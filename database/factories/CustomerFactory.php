@@ -17,12 +17,11 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            'id' => fake()->unique(),
-            'customer_name' => fake()->unique(),
-            'customer_address' => fake(),
-            'customer_email'=> fake()->safeEmail();
-            'customer_phone' => fake();
-            
+            'customer_name'=>$this->faker->unique()->company(),
+            'customer_address'=>$this->faker->unique()->address(),
+            'customer_phone'=>$this->faker->unique()->phoneNumber(),
+            'customer_mail'=>$this->faker->unique()->safeEmail()
+
         ];
     }
 }
