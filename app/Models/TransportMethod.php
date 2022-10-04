@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class TransportMethod extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['method','weight'];
+
     public function appointment(){
+        
         return $this->belongsTo(Appointment::class);
     }
 }

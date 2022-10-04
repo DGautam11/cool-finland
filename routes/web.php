@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class,'index'])->name('home');
+
+Route::post('/logout',[LogoutController::class,'logout'])->name('logout');
+
+Route::get('/login',[LoginController::class,'showLoginForm'])->name('login');
+Route::post('/login',[LoginController::class,'login']);
+
+Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+
