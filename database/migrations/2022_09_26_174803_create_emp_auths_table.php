@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('emp_auths', function (Blueprint $table) {
             $table->id();
+            $table->string('emp_name');
             $table->string('username')->unique();
             $table->string('password');
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');

@@ -14,6 +14,17 @@ class EmpAuth extends Authenticatable
         'password'
     ];
 
+    public function generateUserName($name){
+        $username = Str::lower(Str::slug($name));
+        if(User::where('username', '=', $username)->exists()){
+            $uniqueUserName = $username.'-'.Str::lower(Str::random(4));
+            $username = $this->generateUserName($uniqueUserName);
+        }
+        return $username;
+    }
+
+    
+
     protected $hidden = [
         'username',
         'password'
