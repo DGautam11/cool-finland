@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\CustomerAppointmentController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,12 @@ Route::Post('/customers/store',[CustomerController::class,'store'])->name('saveC
 Route::get('/customers',[CustomerController::class,'index'])->name('customers');
 
 Route::Post('/appointments/store',[AppointmentController::class,'store'])->name('storeAppointments');
+Route::get('/employees', [EmployeeController::class,'index'])->name('employees.index');
+Route::get('/employees/create', [EmployeeController::class,'create'])->name('employees.create');
+Route::post('/employees', [EmployeeController::class,'store'])->name('employees.store');
+Route::get('/employees/{employee}/edit', [EmployeeController::class,'edit'])->name('employees.edit');
+Route::put('/employees/{employee}', [EmployeeController::class,'update'])->name('employees.update');
+Route::delete('employees/{employee}', [EmployeeController::class,'destroy'])->name('employees.destroy');
 
 Route::patch('/appointments/update/status/{id}',[AppointmentController::class,'updateStatus'])->name('updateStatus');
 

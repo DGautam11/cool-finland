@@ -9,11 +9,14 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $table= 'employees';
+
     protected $fillable = [
         'emp_name',
         'emp_address',
         'emp_email',
-        'emp_phone'
+        'emp_phone',
+        'username',
     ];
 
     /**
