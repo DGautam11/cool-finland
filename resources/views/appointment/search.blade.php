@@ -3,31 +3,14 @@
 @section('content')
 <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="d-sm-flex justify-content-between">
+        <div>
     <form id="search-form" class="search-form form-group" method="post" action="{{ route('searchByDate') }}"  >
         @csrf
          <label for="search date">Search: </label>
-        <input type="date" name="search-date" min="{{ $minDate }}" max="{{ $maxDate }}" required onchange="event.preventDefault();
+        <input type="date" name="search-date"  value = {{ $searchDate }} min="{{ $minDate }}" max="{{ $maxDate }}" required onchange="event.preventDefault();
         document.getElementById('search-form').submit(); "/>
         <input type="submit" style="visibility: hidden;" />
     </form>
-    <div class="mb-3 radio-btns row">
-        <form id="search-form-status" class="search-form form-group" method="post" action="{{ route('searchByStatus') }}"  >
-        @csrf
-        @foreach ($allstatus as $status )
-
-        <div class="form-check radio1" style="margin-left: 10px">
-          <input class="form-check-input" type="radio" name="search-status" id="flexRadioDefault" value="{{ $status->id }}" required onchange="event.preventDefault();
-          document.getElementById('search-form-status').submit();">
-          <label class="form-check-label" for="flexRadioDefault">
-            {{ $status->status }}
-          </label>
-        </div>
-          
-        @endforeach
-        <input type="submit" style="visibility: hidden;" />
-        </form>
-      </div>
         </div>
         <div>
             <a href="{{ route('createAppointment') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> New Appointment</a>
@@ -47,7 +30,8 @@
                 <th scope="col">Weight</th>
                 <th scope="col">Method</th>
                 <th scope="col">Status</th>
-                <th scope="col">Edit Appointments</th>
+                    
+                
             </tr>
         </thead>
         <tbody>
@@ -67,6 +51,8 @@
                         
                     
                     <td>{{ $appointment->transportMethod->method }}</td>
+
+                    @if ($appointment->status->status == 'active')
 
                     <td>
                         <div class="active">{{ $appointment->status->status }}</div>
@@ -94,6 +80,28 @@
                     <a href=" " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Edit </a>
 
                 </td>
+                        
+                    @elseif ($appointment->status->status == 'completed')
+
+                    <td>
+
+                    <div class="completed">{{ $appointment->status->status }}</div>
+
+                    </td>
+
+                    @else
+
+                    <td>
+
+                    <div class="cancelled">{{ $appointment->status->status }}</div>
+
+                    </td>
+
+                    @endif
+
+
+
+                    
 
                 </tr>
             @endforeach

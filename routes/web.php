@@ -1,10 +1,14 @@
 <?php
 
+use App\Models\Appointment;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CustomerAppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +30,22 @@ Route::post('/login',[LoginController::class,'login']);
 
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
+Route::get('/appointments',[AppointmentController::class,'index'])->name('appointments');
+
+Route::Post('/appointments/dsearch/result',[AppointmentController::class,'searchAppointmentsByDate'])->name('searchByDate');
+
+Route::Post('/appointments/search/result',[AppointmentController::class,'searchAppointmentsByStatus'])->name('searchByStatus');
+
+Route::get('/appointments/create',[AppointmentController::class,'create'])->name('createAppointment');
+
+Route::get('/customers/create',[CustomerController::class,'create'])->name('createCustomer');
+
+Route::Post('/customers/store',[CustomerController::class,'store'])->name('saveCustomer');
+
+Route::get('/customers',[CustomerController::class,'index'])->name('customers');
+
+Route::Post('/appointments/store',[AppointmentController::class,'store'])->name('storeAppointments');
+
+Route::patch('/appointments/update/status/{id}',[AppointmentController::class,'updateStatus'])->name('updateStatus');
+
+Route::get('/{customer:customer_name}/appointments',[CustomerAppointmentController::class,'index'])->name('customers.appointments');

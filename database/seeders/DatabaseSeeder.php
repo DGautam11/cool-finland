@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
+
     {
+
+        /** 
         Customer::factory(10)->create();
         Employee::factory(5)->create();
 
@@ -30,6 +33,7 @@ class DatabaseSeeder extends Seeder
 
             DB::table('emp_auths')->insert([
                 'username' => 'EMP'.Str::random(5),
+                $password = Hash::make('')
                 'password' => Hash::make('password'),
                 'employee_id' => $i,
                 'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
@@ -88,7 +92,9 @@ class DatabaseSeeder extends Seeder
         'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
     ]);
 
-    Appointment::factory(10)->create();
+    **/
+
+    Appointment::factory(5)->create();
     
 }
 }

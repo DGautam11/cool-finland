@@ -9,10 +9,12 @@ class TransportMethod extends Model
 {
     use HasFactory;
 
+    protected $table = 'transport_methods';
+
     protected $fillable = ['method','weight'];
 
     public function appointment(){
         
-        return $this->belongsTo(Appointment::class);
+        return $this->hasMany(Appointment::class);
     }
 }

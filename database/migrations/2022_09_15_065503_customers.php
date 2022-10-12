@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('costumer', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name')->unique();
-            $table->string('customer_address')->nullable();
-            $table->timestamp('customer_email')->nullable();
-            $table->string('customer_phone')->nullable();
+            $table->string('customer_address');
+            $table->string('customer_mail');
+            $table->string('customer_phone');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
     {
         // delete table if exists
 
-        Schema::dropifExists('posts');
+        Schema::dropifExists('customers');
     }
 };

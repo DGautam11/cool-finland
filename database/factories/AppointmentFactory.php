@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,12 +18,12 @@ class AppointmentFactory extends Factory
     public function definition()
     {
         return [
-            'date'=> $this->faker->dateTimeBetween('now', '+1 months'),
+            'date'=> Carbon::today()->toDateString(),
             'estimated_time_of_arrival'=>$this->faker->time('H:i:s'),
             'transport_method_id'=>$this->faker->numberBetween(1, 2),
-            'status_id'=>$this->faker->numberBetween(1, 2),
+            'status_id'=>1,
             'customer_id'=>$this->faker->numberBetween(1, 10),
-            'no_of_containers_or_trucks'=>$this->faker->numberBetween(1, 4),
+            'no_of_containers_or_trucks'=>$this->faker->numberBetween(1, 3),
 
             //
         ];

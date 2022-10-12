@@ -9,10 +9,12 @@ class Status extends Model
 {
     use HasFactory;
 
+    protected $table = 'status';
+
     protected $fillable = ['status'];
 
     public function appointment(){
-        return $this->belongsTo(Appointment::class);
+        return $this->hasMany(Appointment::class);
     }
 
 }
